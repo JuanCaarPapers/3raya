@@ -52,3 +52,7 @@ def instrucciones():
                     instrucciones()
 
 menu()
+def x():
+    print('X   X'+
+        '\n  X  '+
+     '\nX  X' )
