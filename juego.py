@@ -1,3 +1,10 @@
+#METODO SALIR
+def terminar():
+    print('ahora te sales del juego xdddd')
+#METODO DEL JUEGO
+def juego():
+    print('ahora empezaría el juego')
+#METODO DEL MENU
 def menu():
     print(   "______ _                           _     _               _    _____" +                                    
           "\n | ___ (_)                         (_)   | |             | |  |____ |" +                                    
@@ -19,12 +26,12 @@ def menu():
         elif seleccion == 3:
             terminar()
         else:
-            print('por favor selecciona una opción valida')
+            print('Por favor selecciona una opción valida \n')
             return menu()
     except ValueError:
-                    print('por favor selecciona una opción valida')
+                    print('Por favor selecciona una opción valida \n')
                     menu()
-
+#METODO INSTRUCCIONES
 def instrucciones():
     print('Bienvenido al tres en raya versión python, el típico juego porteado a python.' +
           '\n Para comenzar una nueva partida selecciona en el menú principal la opcción uno "jugar"' +
@@ -33,20 +40,15 @@ def instrucciones():
           '\n quereís poner vuestras fichas, la partida acaba cuando uno de los dos rivales consigue 3 tres'+
           '\n fichas consecutivas en raya. !Buena suerte¡ \n '
         )
-    def sleccion_instr():      
+    try: 
         selecion_inst = int(input('introduce 1 para volver al menú principal \n'))
         if selecion_inst == 1:
             menu()
-        else:
-            print('por favor selecciona 1 para volver al menu principal')
-            return sleccion_instr()
-    sleccion_instr()
-
-
-def terminar():
-    print('ahora te sales del juego xdddd')
-
-def juego():
-    print('ahora empezaría el juego')
+        while(selecion_inst != 1):
+            print('Selecciona una opción valida \n')
+            instrucciones()
+    except ValueError:
+                    print('por favor selecciona una opción valida \n')
+                    instrucciones()
 
 menu()
