@@ -13,6 +13,7 @@ def titulo():
           "\n                                                                                               __/ |     "+
           "\n                                                                                               |___/     "
         )
+
 #METODO DEL MENU
 def menu():
     try:
@@ -25,8 +26,6 @@ def menu():
             return opcion
         else: 
             return menu()
-
-#
 
 #METODO SALIR
 def terminar():
@@ -73,6 +72,7 @@ def selec_pieza():
 def rellenar_tablero(figura):
     fila = (input('¿Qué fila quieres rellenar?'))
     columna = input('¿Qué columna quieres rellenar?').upper()
+
     #Para la fila 1
     if fila == '1' and columna == 'A':
         fila1[0] = figura
@@ -97,25 +97,22 @@ def rellenar_tablero(figura):
     elif fila == '3' and columna == 'C':
         fila3[2] = figura
 
-# tablero_final = 
-# print(tablero_final)
-
-# figura = 'X'
-# rellenar_tablero()
-# tablero_final = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-# print(tablero_final)
-
+#BUCLE FOR PARA DETECTAR LA VICTORIA DE UN JUGADOR
 def evalua(figura):
-    tab = [fila1, fila2, fila3]
+    tab = [fila1.copy(), fila2.copy(), fila3.copy()]
     for i in range(len(tab)):
         for j in range(len(tab[i])):
             if tab[i][j] != figura:
                 tab[i][j] = ''
+
     if figura == 'X':
+        #print('EVALUA: ',tab in victoria_x)
         return tab in victoria_x
     else:
+        #print('EVALUA: ',tab in victoria_O)
         return tab in victoria_O
 
+#METODO DE JUEGO
 def juego():
     jug1 = selec_pieza() 
     if jug1 == 'X':
@@ -124,26 +121,29 @@ def juego():
         jug2 = 'X'
     tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
     print(tablero)
-    print('EVALUA: ',evalua(jug1))
-    while(not evalua(jug1) and not evalua(jug2)):
-        print('FILAS: ',fila1,fila2,fila3)
+    while(True):
         rellenar_tablero(jug1)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
         print(tablero)
+        if(evalua(jug1)):
+            break
         rellenar_tablero(jug2)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
         print(tablero)
+        if(evalua(jug1)):
+            break
     if evalua(jug1):
         print('ha ganao j1')
     else:
         print('ha ganao j2')
 
 
-#PROGRAMA PRINCIPAL 
+#LISTAS PARA EL TABLERO
 fila1 = ['','','']
 fila2 = ['','','']
 fila3 = ['','','']
 
+#LISTAS DE POSIBILIDADES DE VICTORIAS PARA COMPARAR Y DETECTAR CON EVAL 
 victoria_x = [
     [['X','X','X'],['','',''],['','','']],
     [['','',''],['X','X','X'],['','','']],
@@ -164,8 +164,10 @@ victoria_O = [
     [['O','',''],['','O',''],['','','O']],
     [['','','O'],['','O',''],['O','','']]]
 
+titulo()
+
+#BUCLE PRINCIPAL
 while(True):
-        titulo()
         opcion = menu()
         if opcion == 1:
             juego()
