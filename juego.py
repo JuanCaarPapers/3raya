@@ -1,3 +1,7 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 #METODO SALIR
 def terminar():
     print('ahora te sales del juego xdddd')
@@ -50,9 +54,25 @@ def instrucciones():
     except ValueError:
                     print('por favor selecciona una opción valida \n')
                     instrucciones()
-
 menu()
-def x():
-    print('X   X'+
-        '\n  X  '+
-     '\nX  X' )
+
+
+def selec_pieza():
+    print('Bienvenidos al tres en raya, jugador 1 selecciona una pieza:'+
+          '\n Según la pieza elegida, el jugador 2 jugará con la restante.'+
+          '\n             1: X  2: O')
+    try:
+        sel_piez = int(input('Escribe 1 o 2 para elegir pieza'))
+        while(sel_piez != 1 and sel_piez != 2):
+            print('por favor selecciona una opción valida')
+            sel_piez = int(input('Escribe 1 o 2 para elegir pieza'))
+        if sel_piez == 1:
+            fig1 = 'X'
+            fig2 = 'O'
+        elif sel_piez == 2:
+            fig1 = 'O'
+            fig2 = 'X'
+    except:
+        print('selecciona una opccion valida')
+        return selec_pieza()
+selec_pieza()
