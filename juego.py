@@ -29,7 +29,7 @@ def menu():
 
 #METODO SALIR
 def terminar():
-    print('ahora te sales del juego xdddd')
+    print('Saliendo del juego...')
     sys.exit()
 
 
@@ -45,9 +45,6 @@ def instrucciones():
         )
     try: 
         selecion_inst = int(input('introduce 1 para volver al menú principal \n'))
-        if selecion_inst == 1:
-            titulo()
-            menu()
         while(selecion_inst != 1):
             print('Selecciona una opción valida \n')
             instrucciones()
@@ -70,32 +67,52 @@ def selec_pieza():
 #METODO TABLERO
    
 def rellenar_tablero(figura):
-    fila = (input('¿Qué fila quieres rellenar? \n'))
+    fila = input('¿Qué fila quieres rellenar? \n')
     columna = input('¿Qué columna quieres rellenar? \n').upper()
+    filas = {
+        '1': fila1,
+        '2': fila2,
+        '3': fila3
+    }
+    columnas = {
+        'A': 0,
+        'B': 1,
+        'C': 2,
+    }
+    try:
+        if filas[fila][columnas[columna]] == '':
+            filas[fila][columnas[columna]] = figura
+            print(fila1,fila2,fila3)
+        else:
+            print('Ese sitio ya esta ocupado')
+            rellenar_tablero(figura)
+    except:
+        print('ERROR!!Introduce una fila y columna valida')
+        rellenar_tablero(figura)
+   #en un primer momento usamos este metodo para crear el tablero pero luego nos dimos cuenta de que era mas facil hacerlo con un diccionario. 
+    # #Para la fila 1
+    # if fila == '1' and columna == 'A':
+    #     fila1[0] = figura
+    # elif fila == '1' and columna == 'B':
+    #     fila1[1] = figura
+    # elif fila == '1' and columna == 'C':
+    #     fila1[2] = figura
 
-    #Para la fila 1
-    if fila == '1' and columna == 'A':
-        fila1[0] = figura
-    elif fila == '1' and columna == 'B':
-        fila1[1] = figura
-    elif fila == '1' and columna == 'C':
-        fila1[2] = figura
+    # #Para la fila 2
+    # elif fila == '2' and columna == 'A':
+    #     fila2[0] = figura
+    # elif fila == '2' and columna == 'B':
+    #     fila2[1] = figura
+    # elif fila == '2' and columna == 'C':
+    #     fila2[2] = figura
 
-    #Para la fila 2
-    elif fila == '2' and columna == 'A':
-        fila2[0] = figura
-    elif fila == '2' and columna == 'B':
-        fila2[1] = figura
-    elif fila == '2' and columna == 'C':
-        fila2[2] = figura
-
-    #Para la fila 3 
-    elif fila == '3' and columna == 'A':
-        fila3[0] = figura
-    elif fila == '3' and columna == 'B':
-        fila3[1] = figura
-    elif fila == '3' and columna == 'C':
-        fila3[2] = figura
+    # #Para la fila 3 
+    # elif fila == '3' and columna == 'A':
+    #     fila3[0] = figura
+    # elif fila == '3' and columna == 'B':
+    #     fila3[1] = figura
+    # elif fila == '3' and columna == 'C':
+    #     fila3[2] = figura
 
 #BUCLE FOR PARA DETECTAR LA VICTORIA DE UN JUGADOR
 def evalua(figura):
