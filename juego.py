@@ -40,8 +40,8 @@ def instrucciones():
           '\n Para comenzar una nueva partida selecciona en el menú principal la opcción uno "jugar"' +
           '\n a continuación selecciona tu y tu oponente las fichas que quereis usar, el juego comienza.' +
           '\n Ir, por turnos, escogiendo como se indica en la pequeña interfaz de texto el sitio en el que'+
-          '\n quereís poner vuestras fichas, la partida acaba cuando uno de los dos rivales consigue 3 tres'+
-          '\n fichas consecutivas en raya. !Buena suerte¡ \n '
+          '\n quereís poner vuestras fichas, la partida acaba cuando uno de los dos rivales consigue tres'+
+          '\n fichas consecutivas en raya.  !Buena suerte¡ \n '
         )
     try: 
         selecion_inst = int(input('introduce 1 para volver al menú principal \n'))
@@ -70,8 +70,8 @@ def selec_pieza():
 #METODO TABLERO
    
 def rellenar_tablero(figura):
-    fila = (input('¿Qué fila quieres rellenar?'))
-    columna = input('¿Qué columna quieres rellenar?').upper()
+    fila = (input('¿Qué fila quieres rellenar? \n'))
+    columna = input('¿Qué columna quieres rellenar? \n').upper()
 
     #Para la fila 1
     if fila == '1' and columna == 'A':
@@ -120,22 +120,26 @@ def juego():
     else:   
         jug2 = 'X'
     tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-    print(tablero)
+    print('\n'*20,tablero)
     while(True):
+        print('JUGADOR1: ')
         rellenar_tablero(jug1)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-        print(tablero)
+        print('\n'*20,tablero)
         if(evalua(jug1)):
             break
+
+        print('JUGADOR2: ')
         rellenar_tablero(jug2)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-        print(tablero)
-        if(evalua(jug1)):
+        print('\n'*20,tablero)
+        if(evalua(jug2)):
             break
     if evalua(jug1):
-        print('ha ganao j1')
+        print('Enhorabuena! Has ganado la partida')
+        
     else:
-        print('ha ganao j2')
+        print('Enhorabuena! Has ganado la partida')
 
 
 #LISTAS PARA EL TABLERO
@@ -170,6 +174,9 @@ titulo()
 while(True):
         opcion = menu()
         if opcion == 1:
+            fila1 = ['','','']
+            fila2 = ['','','']
+            fila3 = ['','','']
             juego()
         elif opcion == 2:
             instrucciones()
