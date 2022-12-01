@@ -137,19 +137,19 @@ def juego():
     else:   
         jug2 = 'X'
     tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-    print('\n'*20,tablero)
+    print('\n'*60,tablero)
     while(True):
         print('JUGADOR1: ')
         rellenar_tablero(jug1)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-        print('\n'*20,tablero)
+        print('\n'*60,tablero)
         if(evalua(jug1)):
             break
 
         print('JUGADOR2: ')
         rellenar_tablero(jug2)
         tablero = pd.DataFrame([fila1,fila2,fila3],columns=['A','B','C'],index=['1','2','3'])
-        print('\n'*20,tablero)
+        print('\n'*60,tablero)
         if(evalua(jug2)):
             break
     if evalua(jug1):
